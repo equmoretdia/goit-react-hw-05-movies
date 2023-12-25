@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "@types/estree": "^1.0.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "prop-types": "^15.8.1",
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/estree": "^1.0.5"
   }
 }
