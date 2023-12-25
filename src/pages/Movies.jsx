@@ -5,7 +5,7 @@ const Movies = () => {
   //     //http request if it is required
   //   }, []);
 
-  return <div>Movies</div>;
+  return <div>Movies page</div>;
 };
 
 export default Movies;
