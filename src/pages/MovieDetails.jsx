@@ -17,9 +17,9 @@ const MovieDetails = () => {
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
       );
-      const MovieDetails = await response.json();
-      console.log(MovieDetails);
-      return MovieDetails;
+      const movieDetails = await response.json();
+      // console.log(movieDetails);
+      return movieDetails;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
     }
@@ -28,13 +28,14 @@ const MovieDetails = () => {
   useEffect(() => {
     async function fetchMovie() {
       const filmDetails = await fetchMovieById(movieId);
+      const percentageScore = Math.round(filmDetails['vote_average'] * 10, 0);
       setFilm({
-        title: filmDetails.title,
+        title: filmDetails['title'],
         year: filmDetails['release_date'].substring(0, 4),
-        score: Math.round(filmDetails['vote_average'] * 10, 0),
+        score: percentageScore,
         image: filmDetails['poster_path'],
-        overview: filmDetails.overview,
-        genres: filmDetails.genres,
+        overview: filmDetails['overview'],
+        genres: filmDetails['genres'],
       });
     }
     fetchMovie();
