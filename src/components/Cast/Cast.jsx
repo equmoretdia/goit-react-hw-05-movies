@@ -11,7 +11,7 @@ const Cast = () => {
         `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
       );
       const movieCredits = await response.json();
-      console.log(movieCredits);
+      // console.log(movieCredits);
       return movieCredits;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);

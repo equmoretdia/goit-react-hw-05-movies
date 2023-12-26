@@ -11,7 +11,7 @@ const Reviews = () => {
         `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
       );
       const movieReviews = await response.json();
-      console.log(movieReviews);
+      // console.log(movieReviews);
       return movieReviews;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);

@@ -42,7 +42,7 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <>
+    <div>
       <h1>pls hide me</h1>
       <button>Go back</button>
       <div>
@@ -74,7 +74,7 @@ const MovieDetails = () => {
         </li>
       </ul>
       <Outlet />
-    </>
+    </div>
   );
 };
 
