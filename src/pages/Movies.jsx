@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Movies = () => {
+  const [searchInput, setSearchInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const searchQuery = 'batman';
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const movieId = searchParams.get('movieId') ?? '';
+  console.log(movieId);
 
   async function fetchMovieByKeyword(query) {
     try {
@@ -15,10 +21,17 @@ const Movies = () => {
       return movieList;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
+      toast.error(`An error occurred: ${error.message}`, {
+        position: 'top-right',
+        theme: 'colored',
+      });
     }
   }
 
   useEffect(() => {
+    if (!searchQuery) {
+      return;
+    }
     async function fetchMovie() {
       const filmList = await fetchMovieByKeyword(searchQuery);
       const films = filmList.results;
@@ -34,25 +47,64 @@ const Movies = () => {
     fetchMovie();
   }, [searchQuery]);
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (searchInput.trim() === '') {
+      setSearchParams({});
+      return toast.warn('Please enter a search query', {
+        position: 'top-right',
+        theme: 'colored',
+      });
+    }
+
+    setSearchQuery(searchInput.trim());
+    setSearchInput('');
+  };
+
+  const handleInputChange = e => {
+    const input = e.target.value;
+    const params = input !== '' ? { query: input.trim() } : {};
+    setSearchInput(input.toLowerCase());
+    setSearchParams(params);
+  };
+
   return (
     <div>
-      {/* <h1>pls hide me</h1>
-      <input type="text" value={dogId} onChange={updateQueryString} />
-      <button onClick={() => setSearchParams({ a: 5, b: 10, c: 'hello' })}>
-        Change searchParams
-      </button> */}
+      <h1>pls hide me</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="searchInput"
+          value={searchInput}
+          onChange={handleInputChange}
+          autoComplete="off"
+          // autoFocus
+          placeholder="Search movies"
+        />
+        <button type="submit">Search</button>
+      </form>
       <ul>
-        {movies.length > 0 ? (
+        {
+          // searchQuery && movies.length > 0 ? (
           movies.map(movie => (
             <li key={movie.id}>
-              <Link
-                to={`/movies/${movie.id}`}
-              >{`${movie.title} (${movie.year})`}</Link>
+              <Link to={`/movies/${movie.id}`}>{`${movie.title} (${
+                movie.year ? movie.year : 'YYYY'
+              })`}</Link>
             </li>
           ))
-        ) : (
-          <p>No movie were found for your query, please try another one!</p>
-        )}
+          // ) : (
+          //   <p>No movie were found for your query, please try another one!</p>
+          // )
+          /* toast.warn(
+              'No movie were found for your query, please try another one!',
+              {
+                position: 'top-right',
+                theme: 'colored',
+              }
+          ) */
+        }
       </ul>
     </div>
   );

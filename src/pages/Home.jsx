@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -14,6 +15,10 @@ const Home = () => {
       return popularMovies.results;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
+      toast.error(`An error occurred: ${error.message}`, {
+        position: 'top-right',
+        theme: 'colored',
+      });
     }
   }
 

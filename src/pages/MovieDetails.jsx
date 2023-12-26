@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MovieDetails = () => {
   const [{ title, year, score, image, overview, genres }, setFilm] = useState({
@@ -22,6 +23,10 @@ const MovieDetails = () => {
       return movieDetails;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
+      toast.error(`An error occurred: ${error.message}`, {
+        position: 'top-right',
+        theme: 'colored',
+      });
     }
   }
 
@@ -53,7 +58,7 @@ const MovieDetails = () => {
           />
         )}
         <div>
-          <h2>{`${title}(${year})`}</h2>
+          <h2>{`${title}(${year ? year : 'YYYY'})`}</h2>
           <p>{`User Score: ${score}%`}</p>
           <h3>Overview</h3>
           <p>{overview}</p>
