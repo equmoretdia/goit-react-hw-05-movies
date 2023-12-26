@@ -19,7 +19,7 @@ const Cast = () => {
   }
 
   useEffect(() => {
-    async function fetchMovie() {
+    async function fetchCredits() {
       const filmCredits = await fetchMovieCredits(movieId);
       const filmCast = filmCredits.cast;
       setCast(
@@ -32,7 +32,7 @@ const Cast = () => {
           }))
       );
     }
-    fetchMovie();
+    fetchCredits();
   }, [movieId]);
 
   return (
