@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
+
+  const location = useLocation();
+  console.log(location);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const movieId = searchParams.get('movieId') ?? '';
@@ -89,9 +93,11 @@ const Movies = () => {
           // searchQuery && movies.length > 0 ? (
           movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{`${movie.title} (${
-                movie.year ? movie.year : 'YYYY'
-              })`}</Link>
+              <Link
+                key={movie.id}
+                to={`/movies/${movie.id}`}
+                state={{ from: location }}
+              >{`${movie.title} (${movie.year ? movie.year : 'YYYY'})`}</Link>
             </li>
           ))
           // ) : (

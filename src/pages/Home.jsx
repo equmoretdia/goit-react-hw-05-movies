@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
+
+  const location = useLocation();
+  console.log(location);
 
   async function fetchPopularMovies() {
     try {
@@ -36,7 +39,9 @@ const Home = () => {
       <ul>
         {films.map(({ title, id }) => (
           <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
+            <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>

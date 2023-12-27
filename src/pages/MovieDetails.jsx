@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const MovieDetails = () => {
@@ -11,6 +11,13 @@ const MovieDetails = () => {
     overview: null,
     genres: null,
   });
+
+  const location = useLocation();
+  console.log(location);
+
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  console.log(backLinkLocationRef);
+
   const { movieId } = useParams();
 
   async function fetchMovieById(id) {
@@ -49,7 +56,9 @@ const MovieDetails = () => {
   return (
     <div>
       <h1>pls hide me</h1>
-      <button>Go back</button>
+      <button>
+        <Link to={backLinkLocationRef.current}>Go back</Link>
+      </button>
       <div>
         {image && (
           <img
