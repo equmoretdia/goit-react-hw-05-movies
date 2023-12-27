@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -30,10 +29,6 @@ const Movies = () => {
       return movieList;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
-      toast.error(`An error occurred: ${error.message}`, {
-        position: 'top-right',
-        theme: 'colored',
-      });
     }
   }
 
@@ -65,10 +60,6 @@ const Movies = () => {
 
     if (searchInput.trim() === '') {
       setSearchParams({});
-      return toast.warn('Please enter a search query', {
-        position: 'top-right',
-        theme: 'colored',
-      });
     }
 
     setSearchQuery(searchInput.trim());
@@ -98,28 +89,15 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
       <ul>
-        {
-          // searchQuery && movies.length > 0 ? (
-          movies.map(movie => (
-            <li key={movie.id}>
-              <Link
-                key={movie.id}
-                to={`/movies/${movie.id}`}
-                state={{ from: location }}
-              >{`${movie.title} (${movie.year ? movie.year : 'YYYY'})`}</Link>
-            </li>
-          ))
-          // ) : (
-          //   <p>No movie were found for your query, please try another one!</p>
-          // )
-          /* toast.warn(
-              'No movie were found for your query, please try another one!',
-              {
-                position: 'top-right',
-                theme: 'colored',
-              }
-          ) */
-        }
+        {movies.map(movie => (
+          <li key={movie.id}>
+            <Link
+              key={movie.id}
+              to={`/movies/${movie.id}`}
+              state={{ from: location }}
+            >{`${movie.title} (${movie.year ? movie.year : 'YYYY'})`}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

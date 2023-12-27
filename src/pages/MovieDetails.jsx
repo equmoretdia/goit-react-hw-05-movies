@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const MovieDetails = () => {
   const [{ title, year, score, image, overview, genres }, setFilm] = useState({
@@ -30,10 +29,6 @@ const MovieDetails = () => {
       return movieDetails;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
-      toast.error(`An error occurred: ${error.message}`, {
-        position: 'top-right',
-        theme: 'colored',
-      });
     }
   }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+import { Heading, PopularMovies, PopularMovie, MovieLink } from './HomeStyles';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -18,10 +18,6 @@ const Home = () => {
       return popularMovies.results;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
-      toast.error(`An error occurred: ${error.message}`, {
-        position: 'top-right',
-        theme: 'colored',
-      });
     }
   }
 
@@ -35,16 +31,16 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
-      <ul>
+      <Heading>Trending today</Heading>
+      <PopularMovies>
         {films.map(({ title, id }) => (
-          <li key={id}>
-            <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
+          <PopularMovie key={id}>
+            <MovieLink key={id} to={`/movies/${id}`} state={{ from: location }}>
               {title}
-            </Link>
-          </li>
+            </MovieLink>
+          </PopularMovie>
         ))}
-      </ul>
+      </PopularMovies>
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -16,10 +15,6 @@ const Cast = () => {
       return movieCredits;
     } catch (error) {
       console.log(`An error occurred: ${error.message}`);
-      toast.error(`An error occurred: ${error.message}`, {
-        position: 'top-right',
-        theme: 'colored',
-      });
     }
   }
 
