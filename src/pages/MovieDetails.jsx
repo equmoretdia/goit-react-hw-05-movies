@@ -55,7 +55,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <h1>pls hide me</h1>
+      <h1>Chosen movie details</h1>
       <button>
         <Link to={backLinkLocationRef.current}>Go back</Link>
       </button>

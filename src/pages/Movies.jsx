@@ -5,10 +5,15 @@ import { toast } from 'react-toastify';
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [movies, setMovies] = useState([]);
+
+  const lastSearchListUnparsed = window.localStorage.getItem('movies');
+  const lastSearchListParsed = JSON.parse(lastSearchListUnparsed);
+  const [movies, setMovies] = useState(() => {
+    return lastSearchListParsed ?? [];
+  });
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -51,6 +56,10 @@ const Movies = () => {
     fetchMovie();
   }, [searchQuery]);
 
+  useEffect(() => {
+    window.localStorage.setItem('movies', JSON.stringify(movies));
+  }, [movies]);
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -75,7 +84,7 @@ const Movies = () => {
 
   return (
     <div>
-      <h1>pls hide me</h1>
+      <h1>Search the movie by keyword</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
