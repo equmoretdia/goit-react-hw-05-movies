@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import {
+  Heading,
+  Form,
+  Input,
+  Button,
+  SearchedMovies,
+  SearchedMovie,
+  MovieLink,
+} from './MoviesStyled';
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -74,10 +83,10 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <h1>Search the movie by keyword</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+    <>
+      <Heading>Search the movie by keyword</Heading>
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           name="searchInput"
           value={searchInput}
@@ -86,20 +95,22 @@ const Movies = () => {
           // autoFocus
           placeholder="Search movies"
         />
-        <button type="submit">Search</button>
-      </form>
-      <ul>
+        <Button type="submit">Search</Button>
+      </Form>
+      <SearchedMovies>
         {movies.map(movie => (
-          <li key={movie.id}>
-            <Link
+          <SearchedMovie key={movie.id}>
+            <MovieLink
               key={movie.id}
               to={`/movies/${movie.id}`}
               state={{ from: location }}
-            >{`${movie.title} (${movie.year ? movie.year : 'YYYY'})`}</Link>
-          </li>
+            >{`${movie.title} (${
+              movie.year ? movie.year : '????'
+            })`}</MovieLink>
+          </SearchedMovie>
         ))}
-      </ul>
-    </div>
+      </SearchedMovies>
+    </>
   );
 };
 
