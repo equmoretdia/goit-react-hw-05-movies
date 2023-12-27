@@ -1,5 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
+import {
+  Heading,
+  Button,
+  GoBack,
+  Wrapper,
+  Poster,
+  Details,
+  Title,
+  Overview,
+  Genres,
+  Genre,
+  Text,
+  AdditionalInfo,
+} from './MovieDetailsStyles';
+import { List, Item, LinkTo } from './CommonPageStyles';
+import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 const MovieDetails = () => {
   const [{ title, year, score, image, overview, genres }, setFilm] = useState({
@@ -49,41 +65,44 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h1>Chosen movie details</h1>
-      <button>
-        <Link to={backLinkLocationRef.current}>Go back</Link>
-      </button>
-      <div>
+    <>
+      <Heading>Chosen movie details</Heading>
+      <Button>
+        <FaLongArrowAltLeft />
+        <GoBack to={backLinkLocationRef.current}>Go back</GoBack>
+      </Button>
+      <Wrapper>
         {image && (
-          <img
+          <Poster
             src={`https://image.tmdb.org/t/p/w300/${image}`}
             alt="film poster"
           />
         )}
-        <div>
-          <h2>{`${title}(${year ? year : 'YYYY'})`}</h2>
-          <p>{`User Score: ${score}%`}</p>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h4>Genres</h4>
+        <Details>
+          <Title>{`${title}(${year ? year : 'YYYY'})`}</Title>
+          <Text>{`User Score: ${score}%`}</Text>
+          <Overview>Overview</Overview>
+          <Text>{overview}</Text>
+          <Genres>Genres</Genres>
           <ul>
             {genres &&
-              genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
+              genres.map(genre => <Genre key={genre.id}>{genre.name}</Genre>)}
           </ul>
-        </div>
-      </div>
-      <p>Additional information</p>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
+        </Details>
+      </Wrapper>
+      <AdditionalInfo>
+        <Text>Additional information:</Text>
+        <List>
+          <Item>
+            <LinkTo to="cast">Cast</LinkTo>
+          </Item>
+          <Item>
+            <LinkTo to="reviews">Reviews</LinkTo>
+          </Item>
+        </List>
+      </AdditionalInfo>
       <Outlet />
-    </div>
+    </>
   );
 };
 

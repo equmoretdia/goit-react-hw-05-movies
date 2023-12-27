@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Heading = styled.h1`
+const PageHeading = styled.h1`
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+`;
+
+const PageHeadingHidden = styled.h1`
   position: absolute;
   width: 1px;
   height: 1px;
@@ -12,6 +18,26 @@ const Heading = styled.h1`
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+`;
+
+const List = styled.ul`
+  list-style: disc;
+  padding-left: 20px;
+  cursor: pointer;
+`;
+
+const Item = styled.li`
+  padding: 5px 0;
+`;
+
+const LinkTo = styled(Link)`
+  font-weight: 500;
+  color: inherit;
+  &:hover,
+  &:focus {
+    color: #ee3d3d;
+  }
+  text-decoration: none;
 `;
 
 const Form = styled.form`
@@ -42,7 +68,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+const FormButton = styled.button`
   display: inline-block;
   width: 60px;
   height: 30px;
@@ -56,33 +82,13 @@ const Button = styled.button`
   }
 `;
 
-const SearchedMovies = styled.ul`
-  list-style: disc;
-  padding-left: 20px;
-  cursor: pointer;
-`;
-
-const SearchedMovie = styled.li`
-  padding: 5px 0;
-`;
-
-const MovieLink = styled(Link)`
-  font-size: 16px;
-  font-weight: 500;
-  color: inherit;
-  &:hover,
-  &:focus {
-    color: #ee3d3d;
-  }
-  text-decoration: none;
-`;
-
 export {
-  Heading,
+  PageHeading,
+  PageHeadingHidden,
+  List,
+  Item,
+  LinkTo,
   Form,
   Input,
-  Button,
-  SearchedMovies,
-  SearchedMovie,
-  MovieLink,
+  FormButton,
 };

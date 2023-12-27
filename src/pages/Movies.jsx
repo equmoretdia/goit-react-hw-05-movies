@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import {
-  Heading,
+  PageHeadingHidden,
+  List,
+  Item,
+  LinkTo,
   Form,
   Input,
-  Button,
-  SearchedMovies,
-  SearchedMovie,
-  MovieLink,
-} from './MoviesStyled';
+  FormButton,
+} from './CommonPageStyles';
 
 const Movies = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -84,7 +84,7 @@ const Movies = () => {
 
   return (
     <>
-      <Heading>Search the movie by keyword</Heading>
+      <PageHeadingHidden>Search the movie by keyword</PageHeadingHidden>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -95,21 +95,19 @@ const Movies = () => {
           // autoFocus
           placeholder="Search movies"
         />
-        <Button type="submit">Search</Button>
+        <FormButton type="submit">Search</FormButton>
       </Form>
-      <SearchedMovies>
+      <List>
         {movies.map(movie => (
-          <SearchedMovie key={movie.id}>
-            <MovieLink
+          <Item key={movie.id}>
+            <LinkTo
               key={movie.id}
               to={`/movies/${movie.id}`}
               state={{ from: location }}
-            >{`${movie.title} (${
-              movie.year ? movie.year : '????'
-            })`}</MovieLink>
-          </SearchedMovie>
+            >{`${movie.title} (${movie.year ? movie.year : '????'})`}</LinkTo>
+          </Item>
         ))}
-      </SearchedMovies>
+      </List>
     </>
   );
 };

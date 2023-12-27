@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Heading, PopularMovies, PopularMovie, MovieLink } from './HomeStyles';
+import { PageHeading, List, Item, LinkTo } from './CommonPageStyles';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -31,16 +31,16 @@ const Home = () => {
 
   return (
     <>
-      <Heading>Trending today</Heading>
-      <PopularMovies>
+      <PageHeading>Trending today</PageHeading>
+      <List>
         {films.map(({ title, id }) => (
-          <PopularMovie key={id}>
-            <MovieLink key={id} to={`/movies/${id}`} state={{ from: location }}>
+          <Item key={id}>
+            <LinkTo key={id} to={`/movies/${id}`} state={{ from: location }}>
               {title}
-            </MovieLink>
-          </PopularMovie>
+            </LinkTo>
+          </Item>
         ))}
-      </PopularMovies>
+      </List>
     </>
   );
 };
