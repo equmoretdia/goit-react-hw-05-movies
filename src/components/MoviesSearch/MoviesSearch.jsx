@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
-import { Form, Input, FormButton } from './SearchStyles';
+import { Form, Input, FormButton } from './MoviesSearchStyles';
 
-const Search = ({ onSubmit }) => {
+const MoviesSearch = ({ onSubmit }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query') ?? '';
@@ -34,4 +34,4 @@ const Search = ({ onSubmit }) => {
   );
 };
 
-export default Search;
+export default MoviesSearch;

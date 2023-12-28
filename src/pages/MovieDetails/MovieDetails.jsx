@@ -1,4 +1,4 @@
-import Placeholder from 'img/placeholder.jpg';
+import MovieOverview from 'components/MovieOverview';
 
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
@@ -7,13 +7,6 @@ import {
   Heading,
   Button,
   GoBack,
-  Wrapper,
-  Poster,
-  Details,
-  Title,
-  Overview,
-  Genres,
-  Genre,
   Text,
   AdditionalInfo,
   List,
@@ -23,12 +16,12 @@ import {
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 const MovieDetails = () => {
-  const [{ title, year, score, image, overview, genres }, setFilm] = useState({
-    title: null,
-    year: null,
+  const [film, setFilm] = useState({
+    title: '',
+    year: '',
     score: null,
-    image: null,
-    overview: null,
+    image: '',
+    overview: '',
     genres: [],
   });
 
@@ -56,8 +49,6 @@ const MovieDetails = () => {
     fetchMovie();
   }, [movieId]);
 
-  console.log(genres);
-
   return (
     <>
       <Heading>Chosen movie details</Heading>
@@ -65,33 +56,7 @@ const MovieDetails = () => {
         <FaLongArrowAltLeft />
         <GoBack to={backLinkLocationRef.current}>Go back</GoBack>
       </Button>
-      <Wrapper>
-        <Poster
-          src={image ? `https://image.tmdb.org/t/p/w300/${image}` : Placeholder}
-          alt="film poster"
-        />
-        <Details>
-          <Title>
-            {title} {year ? `(${year})` : ''}
-          </Title>
-          {/* <Text>{`User Score: ${score}%`}</Text> */}
-          <Text>
-            {score
-              ? `User Score: ${score}%`
-              : 'User Score: No information available '}
-          </Text>
-          <Overview>Overview</Overview>
-          <Text>{overview ? overview : 'No information available '}</Text>
-          <Genres>Genres</Genres>
-          <ul>
-            {genres.length > 0 ? (
-              genres.map(genre => <Genre key={genre.id}>{genre.name}</Genre>)
-            ) : (
-              <p>No information available</p>
-            )}
-          </ul>
-        </Details>
-      </Wrapper>
+      <MovieOverview movie={film} />
       <AdditionalInfo>
         <Text>Additional information:</Text>
         <List>

@@ -1,4 +1,4 @@
-import Search from 'components/Search';
+import MoviesSearch from 'components/MoviesSearch';
 import MovieList from 'components/MovieList';
 
 import { useState, useEffect } from 'react';
@@ -43,7 +43,7 @@ const Movies = () => {
   return (
     <>
       <PageHeadingHidden>Search the movie by keyword</PageHeadingHidden>
-      <Search onSubmit={setSearchQuery} />
+      <MoviesSearch onSubmit={setSearchQuery} />
       <MovieList list={movies} state={{ from: location }} />
     </>
   );
