@@ -1,17 +1,10 @@
+import Search from 'components/Search';
+
 import { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import {
-  PageHeadingHidden,
-  List,
-  Item,
-  LinkTo,
-  Form,
-  Input,
-  FormButton,
-} from './CommonPageStyles';
+import { useLocation } from 'react-router-dom';
+import { PageHeadingHidden, List, Item, LinkTo } from './CommonPageStyles';
 
 const Movies = () => {
-  const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
   const lastSearchListUnparsed = window.localStorage.getItem('movies');
@@ -21,12 +14,6 @@ const Movies = () => {
   });
 
   const location = useLocation();
-  // console.log(location);
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const movieId = searchParams.get('movieId') ?? '';
-  console.log(movieId);
 
   async function fetchMovieByKeyword(query) {
     try {
@@ -64,39 +51,10 @@ const Movies = () => {
     window.localStorage.setItem('movies', JSON.stringify(movies));
   }, [movies]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    if (searchInput.trim() === '') {
-      setSearchParams({});
-    }
-
-    setSearchQuery(searchInput.trim());
-    setSearchInput('');
-  };
-
-  const handleInputChange = e => {
-    const input = e.target.value;
-    const params = input !== '' ? { query: input.trim() } : {};
-    setSearchInput(input.toLowerCase());
-    setSearchParams(params);
-  };
-
   return (
     <>
       <PageHeadingHidden>Search the movie by keyword</PageHeadingHidden>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="searchInput"
-          value={searchInput}
-          onChange={handleInputChange}
-          autoComplete="off"
-          // autoFocus
-          placeholder="Search movies"
-        />
-        <FormButton type="submit">Search</FormButton>
-      </Form>
+      <Search onSubmit={setSearchQuery} />
       <List>
         {movies.map(movie => (
           <Item key={movie.id}>

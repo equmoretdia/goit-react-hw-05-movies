@@ -15,7 +15,7 @@ const Menu = styled.ul`
 `;
 
 const MenuItem = styled(NavLink).attrs({
-  activeClassName: 'active',
+  active: 'active',
 })`
   font-size: 18px;
   font-weight: 600;
