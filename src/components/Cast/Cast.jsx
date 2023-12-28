@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ActorsList, Actor, ActorPhoto, ActorInfo } from './CastStyles';
+
+import defaultAvatar from 'img/avatar.jpg';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -36,23 +39,23 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
+    <ActorsList>
       {cast &&
         cast.map(actor => (
-          <li key={actor['id']}>
-            {actor['image'] && actor['image'] ? (
-              <img
+          <Actor key={actor['id']}>
+            {actor['image'] ? (
+              <ActorPhoto
                 src={`https://image.tmdb.org/t/p/w200/${actor['image']}`}
                 alt={`${actor['name']}`}
               />
             ) : (
-              "Actor's image"
+              <ActorPhoto src={defaultAvatar} alt="default_avatar" />
             )}
-            <p>Actor: {actor['name']}</p>
-            <p>Character: {actor['character']}</p>
-          </li>
+            <ActorInfo>Actor: {actor['name']}</ActorInfo>
+            <ActorInfo>Character: {actor['character']}</ActorInfo>
+          </Actor>
         ))}
-    </ul>
+    </ActorsList>
   );
 };
 
