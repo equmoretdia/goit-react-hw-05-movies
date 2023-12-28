@@ -1,17 +1,11 @@
 import GoBackButton from 'components/GoBackButton';
 import MovieOverview from 'components/MovieOverview';
+import MovieAdditionalInfo from 'components/MovieAdditionalInfo';
 
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieOptions, optionsAPI } from 'services/api';
-import {
-  Heading,
-  Text,
-  AdditionalInfo,
-  List,
-  Item,
-  LinkTo,
-} from './MovieDetailsStyles';
+import { Heading } from './MovieDetailsStyles';
 
 const MovieDetails = () => {
   const [film, setFilm] = useState({
@@ -52,17 +46,7 @@ const MovieDetails = () => {
       <Heading>Chosen movie details</Heading>
       <GoBackButton path={backLinkLocationRef.current} />
       <MovieOverview movie={film} />
-      <AdditionalInfo>
-        <Text>Additional information:</Text>
-        <List>
-          <Item>
-            <LinkTo to="cast">Cast</LinkTo>
-          </Item>
-          <Item>
-            <LinkTo to="reviews">Reviews</LinkTo>
-          </Item>
-        </List>
-      </AdditionalInfo>
+      <MovieAdditionalInfo />
       <Outlet />
     </>
   );
