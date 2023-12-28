@@ -3,6 +3,7 @@ import MovieList from 'components/MovieList';
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { fetchMovieByKeyword } from 'services/api';
 import { PageHeadingHidden } from './MoviesStyles';
 
 const Movies = () => {
@@ -15,19 +16,6 @@ const Movies = () => {
   });
 
   const location = useLocation();
-
-  async function fetchMovieByKeyword(query) {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
-      );
-      const movieList = await response.json();
-      console.log(movieList);
-      return movieList;
-    } catch (error) {
-      console.log(`An error occurred: ${error.message}`);
-    }
-  }
 
   useEffect(() => {
     if (!searchQuery) {

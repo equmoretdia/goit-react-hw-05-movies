@@ -2,28 +2,16 @@ import defaultAvatar from 'img/avatar.jpg';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { fetchMovieOptions, optionsAPI } from 'services/api';
 import { ActorsList, Actor, ActorPhoto, ActorInfo } from './CastStyles';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
 
-  async function fetchMovieCredits(id) {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
-      );
-      const movieCredits = await response.json();
-      // console.log(movieCredits);
-      return movieCredits;
-    } catch (error) {
-      console.log(`An error occurred: ${error.message}`);
-    }
-  }
-
   useEffect(() => {
     async function fetchCredits() {
-      const filmCredits = await fetchMovieCredits(movieId);
+      const filmCredits = await fetchMovieOptions(optionsAPI.cast, movieId);
       const filmCast = filmCredits.cast;
       setCast(
         filmCast &&

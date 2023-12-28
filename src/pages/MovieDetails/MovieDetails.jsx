@@ -2,6 +2,7 @@ import Placeholder from 'img/placeholder.jpg';
 
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { fetchMovieOptions, optionsAPI } from 'services/api';
 import {
   Heading,
   Button,
@@ -39,22 +40,9 @@ const MovieDetails = () => {
 
   const { movieId } = useParams();
 
-  async function fetchMovieById(id) {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=77971c184b7d14036ed9c9196e488377`
-      );
-      const movieDetails = await response.json();
-      // console.log(movieDetails);
-      return movieDetails;
-    } catch (error) {
-      console.log(`An error occurred: ${error.message}`);
-    }
-  }
-
   useEffect(() => {
     async function fetchMovie() {
-      const filmDetails = await fetchMovieById(movieId);
+      const filmDetails = await fetchMovieOptions(optionsAPI.movie, movieId);
       const percentageScore = Math.round(filmDetails['vote_average'] * 10, 0);
       setFilm({
         title: filmDetails['title'],
