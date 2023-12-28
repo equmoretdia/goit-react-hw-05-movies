@@ -1,3 +1,4 @@
+import GoBackButton from 'components/GoBackButton';
 import MovieOverview from 'components/MovieOverview';
 
 import { useState, useEffect, useRef } from 'react';
@@ -5,15 +6,12 @@ import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieOptions, optionsAPI } from 'services/api';
 import {
   Heading,
-  Button,
-  GoBack,
   Text,
   AdditionalInfo,
   List,
   Item,
   LinkTo,
 } from './MovieDetailsStyles';
-import { FaLongArrowAltLeft } from 'react-icons/fa';
 
 const MovieDetails = () => {
   const [film, setFilm] = useState({
@@ -52,10 +50,7 @@ const MovieDetails = () => {
   return (
     <>
       <Heading>Chosen movie details</Heading>
-      <Button>
-        <FaLongArrowAltLeft />
-        <GoBack to={backLinkLocationRef.current}>Go back</GoBack>
-      </Button>
+      <GoBackButton path={backLinkLocationRef.current} />
       <MovieOverview movie={film} />
       <AdditionalInfo>
         <Text>Additional information:</Text>

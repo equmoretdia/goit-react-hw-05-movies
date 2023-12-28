@@ -14,34 +14,6 @@ const Heading = styled.h1`
   overflow: hidden;
 `;
 
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 90px;
-  height: 30px;
-  border: 1px solid #cdcdcd;
-  border-radius: 3px;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  outline: none;
-  margin-bottom: 10px;
-  &:hover,
-  &:focus {
-    border-width: 2px;
-    border-color: #353535;
-  }
-`;
-
-const GoBack = styled(Link)`
-  font-size: 13px;
-  font-weight: 700;
-  color: #000000;
-  text-decoration: none;
-`;
-
 const Text = styled.p`
   margin-bottom: 20px;
 `;
@@ -72,4 +44,4 @@ const LinkTo = styled(Link)`
   text-decoration: none;
 `;
 
-export { Heading, Button, GoBack, Text, AdditionalInfo, List, Item, LinkTo };
+export { Heading, Text, AdditionalInfo, List, Item, LinkTo };
