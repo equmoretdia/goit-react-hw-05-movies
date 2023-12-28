@@ -1,14 +1,15 @@
 import Search from 'components/Search';
+import MovieList from 'components/MovieList';
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PageHeadingHidden, List, Item, LinkTo } from './CommonPageStyles';
+import { PageHeadingHidden } from './CommonPageStyles';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-
   const lastSearchListUnparsed = window.localStorage.getItem('movies');
   const lastSearchListParsed = JSON.parse(lastSearchListUnparsed);
+
+  const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState(() => {
     return lastSearchListParsed ?? [];
   });
@@ -55,17 +56,7 @@ const Movies = () => {
     <>
       <PageHeadingHidden>Search the movie by keyword</PageHeadingHidden>
       <Search onSubmit={setSearchQuery} />
-      <List>
-        {movies.map(movie => (
-          <Item key={movie.id}>
-            <LinkTo
-              key={movie.id}
-              to={`/movies/${movie.id}`}
-              state={{ from: location }}
-            >{`${movie.title} (${movie.year ? movie.year : '????'})`}</LinkTo>
-          </Item>
-        ))}
-      </List>
+      <MovieList list={movies} state={{ from: location }} />
     </>
   );
 };

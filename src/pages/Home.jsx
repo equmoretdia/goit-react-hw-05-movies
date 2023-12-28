@@ -1,6 +1,8 @@
+import MovieList from 'components/MovieList';
+
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PageHeading, List, Item, LinkTo } from './CommonPageStyles';
+import { PageHeading } from './CommonPageStyles';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -32,15 +34,7 @@ const Home = () => {
   return (
     <>
       <PageHeading>Trending today</PageHeading>
-      <List>
-        {films.map(({ title, id }) => (
-          <Item key={id}>
-            <LinkTo key={id} to={`/movies/${id}`} state={{ from: location }}>
-              {title}
-            </LinkTo>
-          </Item>
-        ))}
-      </List>
+      <MovieList list={films} state={{ from: location }} />
     </>
   );
 };
