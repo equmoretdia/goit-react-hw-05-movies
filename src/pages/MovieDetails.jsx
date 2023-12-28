@@ -17,6 +17,8 @@ import {
 import { List, Item, LinkTo } from './CommonPageStyles';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 
+import Placeholder from 'img/placeholder.jpg';
+
 const MovieDetails = () => {
   const [{ title, year, score, image, overview, genres }, setFilm] = useState({
     title: null,
@@ -72,11 +74,13 @@ const MovieDetails = () => {
         <GoBack to={backLinkLocationRef.current}>Go back</GoBack>
       </Button>
       <Wrapper>
-        {image && (
+        {image ? (
           <Poster
             src={`https://image.tmdb.org/t/p/w300/${image}`}
             alt="film poster"
           />
+        ) : (
+          <Poster src={Placeholder} alt="placeholder" />
         )}
         <Details>
           <Title>{`${title}(${year ? year : 'YYYY'})`}</Title>
