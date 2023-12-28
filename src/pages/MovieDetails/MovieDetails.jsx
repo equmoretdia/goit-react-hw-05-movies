@@ -1,3 +1,5 @@
+import Placeholder from 'img/placeholder.jpg';
+
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import {
@@ -13,11 +15,11 @@ import {
   Genre,
   Text,
   AdditionalInfo,
+  List,
+  Item,
+  LinkTo,
 } from './MovieDetailsStyles';
-import { List, Item, LinkTo } from './CommonPageStyles';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
-
-import Placeholder from 'img/placeholder.jpg';
 
 const MovieDetails = () => {
   const [{ title, year, score, image, overview, genres }, setFilm] = useState({

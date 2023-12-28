@@ -3,7 +3,7 @@ import MovieList from 'components/MovieList';
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PageHeadingHidden } from './CommonPageStyles';
+import { PageHeadingHidden } from './MoviesStyles';
 
 const Movies = () => {
   const lastSearchListUnparsed = window.localStorage.getItem('movies');

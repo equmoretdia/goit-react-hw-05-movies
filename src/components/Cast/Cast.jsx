@@ -1,8 +1,8 @@
+import defaultAvatar from 'img/avatar.jpg';
+
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ActorsList, Actor, ActorPhoto, ActorInfo } from './CastStyles';
-
-import defaultAvatar from 'img/avatar.jpg';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);

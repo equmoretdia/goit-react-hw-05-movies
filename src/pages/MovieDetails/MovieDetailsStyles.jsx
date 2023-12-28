@@ -97,6 +97,26 @@ const AdditionalInfo = styled.div`
     0px 3px 6px -6px rgba(46, 47, 66, 0.08);
 `;
 
+const List = styled.ul`
+  list-style: disc;
+  padding-left: 20px;
+  cursor: pointer;
+`;
+
+const Item = styled.li`
+  padding: 5px 0;
+`;
+
+const LinkTo = styled(Link)`
+  font-weight: 500;
+  color: inherit;
+  &:hover,
+  &:focus {
+    color: #ee3d3d;
+  }
+  text-decoration: none;
+`;
+
 export {
   Heading,
   Button,
@@ -110,4 +130,7 @@ export {
   Genre,
   Text,
   AdditionalInfo,
+  List,
+  Item,
+  LinkTo,
 };
