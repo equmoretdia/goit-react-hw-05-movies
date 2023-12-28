@@ -43,14 +43,14 @@ const Cast = () => {
       {cast &&
         cast.map(actor => (
           <Actor key={actor['id']}>
-            {actor['image'] ? (
-              <ActorPhoto
-                src={`https://image.tmdb.org/t/p/w200/${actor['image']}`}
-                alt={`${actor['name']}`}
-              />
-            ) : (
-              <ActorPhoto src={defaultAvatar} alt="default_avatar" />
-            )}
+            <ActorPhoto
+              src={
+                actor['image']
+                  ? `https://image.tmdb.org/t/p/w200/${actor['image']}`
+                  : defaultAvatar
+              }
+              alt="actor's photo"
+            />
             <ActorInfo>Actor: {actor['name']}</ActorInfo>
             <ActorInfo>Character: {actor['character']}</ActorInfo>
           </Actor>

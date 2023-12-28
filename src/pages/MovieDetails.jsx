@@ -74,14 +74,10 @@ const MovieDetails = () => {
         <GoBack to={backLinkLocationRef.current}>Go back</GoBack>
       </Button>
       <Wrapper>
-        {image ? (
-          <Poster
-            src={`https://image.tmdb.org/t/p/w300/${image}`}
-            alt="film poster"
-          />
-        ) : (
-          <Poster src={Placeholder} alt="placeholder" />
-        )}
+        <Poster
+          src={image ? `https://image.tmdb.org/t/p/w300/${image}` : Placeholder}
+          alt="film poster"
+        />
         <Details>
           <Title>{`${title}(${year ? year : 'YYYY'})`}</Title>
           <Text>{`User Score: ${score}%`}</Text>
