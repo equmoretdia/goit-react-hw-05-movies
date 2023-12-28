@@ -35,4 +35,9 @@ const ActorInfo = styled.p`
   text-align: center;
 `;
 
-export { ActorsList, Actor, ActorPhoto, ActorInfo };
+const Sorry = styled.p`
+  min-width: 500px;
+  padding-left: 20px;
+`;
+
+export { ActorsList, Actor, ActorPhoto, ActorInfo, Sorry };

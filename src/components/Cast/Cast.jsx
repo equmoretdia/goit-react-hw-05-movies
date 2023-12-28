@@ -3,7 +3,7 @@ import defaultAvatar from 'img/avatar.jpg';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieOptions, optionsAPI } from 'services/api';
-import { ActorsList, Actor, ActorPhoto, ActorInfo } from './CastStyles';
+import { ActorsList, Actor, ActorPhoto, ActorInfo, Sorry } from './CastStyles';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -28,7 +28,7 @@ const Cast = () => {
 
   return (
     <ActorsList>
-      {cast &&
+      {cast.length > 0 ? (
         cast.map(actor => (
           <Actor key={actor['id']}>
             <ActorPhoto
@@ -42,7 +42,10 @@ const Cast = () => {
             <ActorInfo>Actor: {actor['name']}</ActorInfo>
             <ActorInfo>Character: {actor['character']}</ActorInfo>
           </Actor>
-        ))}
+        ))
+      ) : (
+        <Sorry>We don't have any cast information for this movie.</Sorry>
+      )}
     </ActorsList>
   );
 };

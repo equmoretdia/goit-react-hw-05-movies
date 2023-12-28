@@ -29,7 +29,7 @@ const MovieDetails = () => {
     score: null,
     image: null,
     overview: null,
-    genres: null,
+    genres: [],
   });
 
   const location = useLocation();
@@ -56,6 +56,8 @@ const MovieDetails = () => {
     fetchMovie();
   }, [movieId]);
 
+  console.log(genres);
+
   return (
     <>
       <Heading>Chosen movie details</Heading>
@@ -69,14 +71,24 @@ const MovieDetails = () => {
           alt="film poster"
         />
         <Details>
-          <Title>{`${title}(${year ? year : 'YYYY'})`}</Title>
-          <Text>{`User Score: ${score}%`}</Text>
+          <Title>
+            {title} {year ? `(${year})` : ''}
+          </Title>
+          {/* <Text>{`User Score: ${score}%`}</Text> */}
+          <Text>
+            {score
+              ? `User Score: ${score}%`
+              : 'User Score: No information available '}
+          </Text>
           <Overview>Overview</Overview>
-          <Text>{overview}</Text>
+          <Text>{overview ? overview : 'No information available '}</Text>
           <Genres>Genres</Genres>
           <ul>
-            {genres &&
-              genres.map(genre => <Genre key={genre.id}>{genre.name}</Genre>)}
+            {genres.length > 0 ? (
+              genres.map(genre => <Genre key={genre.id}>{genre.name}</Genre>)
+            ) : (
+              <p>No information available</p>
+            )}
           </ul>
         </Details>
       </Wrapper>
