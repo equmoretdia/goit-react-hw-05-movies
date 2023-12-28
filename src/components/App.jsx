@@ -6,9 +6,9 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const Home = lazy(() => import('../pages/Home/Home'));
-const Movies = lazy(() => import('../pages/Movies/Movies'));
-const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
+const Home = lazy(() => import('../pages/Home'));
+const Movies = lazy(() => import('../pages/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 
 export const App = () => {
   return (

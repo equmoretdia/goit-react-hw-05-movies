@@ -4,7 +4,7 @@ import MovieList from 'components/MovieList';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchMovieByKeyword } from 'services/api';
-import { PageHeadingHidden } from './MoviesStyles';
+import { PageHeadingHidden } from './CommonPageStyles';
 
 const Movies = () => {
   const lastSearchListUnparsed = window.localStorage.getItem('movies');

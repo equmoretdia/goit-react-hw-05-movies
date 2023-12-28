@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const PageHeading = styled.h1`
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+`;
+
 const PageHeadingHidden = styled.h1`
   position: absolute;
   width: 1px;
@@ -13,4 +19,4 @@ const PageHeadingHidden = styled.h1`
   overflow: hidden;
 `;
 
-export { PageHeadingHidden };
+export { PageHeading, PageHeadingHidden };

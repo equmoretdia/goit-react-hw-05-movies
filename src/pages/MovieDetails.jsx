@@ -5,7 +5,7 @@ import MovieAdditionalInfo from 'components/MovieAdditionalInfo';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieOptions, optionsAPI } from 'services/api';
-import { Heading } from './MovieDetailsStyles';
+import { PageHeadingHidden } from './CommonPageStyles';
 
 const MovieDetails = () => {
   const [film, setFilm] = useState({
@@ -43,7 +43,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Heading>Chosen movie details</Heading>
+      <PageHeadingHidden>Chosen movie details</PageHeadingHidden>
       <GoBackButton path={backLinkLocationRef.current} />
       <MovieOverview movie={film} />
       <MovieAdditionalInfo />
