@@ -4,7 +4,6 @@ import Reviews from './Reviews';
 
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
@@ -23,12 +22,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-      <ToastContainer
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-      />
     </>
   );
 };

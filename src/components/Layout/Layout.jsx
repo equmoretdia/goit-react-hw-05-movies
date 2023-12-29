@@ -1,3 +1,5 @@
+import Loader from '../Loader';
+
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header, Menu, MenuItem, Main, Footer } from './LayoutStyles';
@@ -16,7 +18,8 @@ const Layout = () => {
         </Menu>
       </Header>
       <Main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
+          {/* <Suspense fallback={<div>Loading...</div>}> */}
           <Outlet />
         </Suspense>
       </Main>
