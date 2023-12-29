@@ -35,8 +35,8 @@ const MoviesSearch = ({ onSubmit }) => {
   );
 };
 
-export default MoviesSearch;
-
 MoviesSearch.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default MoviesSearch;

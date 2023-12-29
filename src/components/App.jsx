@@ -20,6 +20,8 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
+        {/* Default route for non-existent URLs */}
+        <Route path="*" element={<Layout />} />
       </Routes>
     </>
   );

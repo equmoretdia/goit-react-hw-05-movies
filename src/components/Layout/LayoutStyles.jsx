@@ -14,9 +14,7 @@ const Menu = styled.ul`
   gap: 1.1em;
 `;
 
-const MenuItem = styled(NavLink).attrs({
-  active: 'active',
-})`
+const MenuItem = styled(NavLink)`
   font-size: 18px;
   font-weight: 600;
   color: inherit;

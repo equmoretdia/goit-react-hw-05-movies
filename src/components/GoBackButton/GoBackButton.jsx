@@ -11,8 +11,8 @@ const GoBackButton = ({ path }) => {
   );
 };
 
-export default GoBackButton;
-
 GoBackButton.propTypes = {
-  path: PropTypes.object,
+  path: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
+
+export default GoBackButton;

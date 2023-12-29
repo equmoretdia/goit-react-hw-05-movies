@@ -43,8 +43,6 @@ const MovieOverview = ({ movie }) => {
   );
 };
 
-export default MovieOverview;
-
 MovieOverview.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -60,3 +58,5 @@ MovieOverview.propTypes = {
     ).isRequired,
   }).isRequired,
 };
+
+export default MovieOverview;

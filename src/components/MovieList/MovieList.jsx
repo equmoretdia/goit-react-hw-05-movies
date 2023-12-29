@@ -15,8 +15,6 @@ const MovieList = ({ list, state }) => {
   );
 };
 
-export default MovieList;
-
 MovieList.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
@@ -26,3 +24,5 @@ MovieList.propTypes = {
   ).isRequired,
   state: PropTypes.object.isRequired,
 };
+
+export default MovieList;
