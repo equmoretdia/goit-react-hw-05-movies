@@ -11,7 +11,7 @@ const MovieDetails = () => {
   const [film, setFilm] = useState({
     title: '',
     year: '',
-    score: null,
+    score: 0,
     image: '',
     overview: '',
     genres: [],

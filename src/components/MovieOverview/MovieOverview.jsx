@@ -50,7 +50,7 @@ MovieOverview.propTypes = {
     title: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     overview: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(
       PropTypes.shape({

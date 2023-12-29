@@ -1,3 +1,5 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'api_key=77971c184b7d14036ed9c9196e488377';
 const API_LANG = 'language=en-US';
@@ -17,6 +19,7 @@ async function fetchPopularMovies() {
     return popularMovies.results;
   } catch (error) {
     console.log(`An error occurred: ${error.message}`);
+    Notify.failure(`An error occurred: ${error.message}`);
   }
 }
 
@@ -30,6 +33,7 @@ async function fetchMovieByKeyword(query) {
     return movieList;
   } catch (error) {
     console.log(`An error occurred: ${error.message}`);
+    Notify.failure(`An error occurred: ${error.message}`);
   }
 }
 
@@ -43,6 +47,7 @@ async function fetchMovieOptions(option, id) {
     return movieInfo;
   } catch (error) {
     console.log(`An error occurred: ${error.message}`);
+    Notify.failure(`An error occurred: ${error.message}`);
   }
 }
 

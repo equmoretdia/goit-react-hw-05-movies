@@ -44,7 +44,13 @@ const Movies = () => {
     <>
       <PageHeadingHidden>Search the movie by keyword</PageHeadingHidden>
       <MoviesSearch onSubmit={setSearchQuery} />
-      <MovieList list={movies} state={{ from: location }} />
+      {movies.length > 0 ? (
+        <MovieList list={movies} state={{ from: location }} />
+      ) : (
+        <p>
+          Sorry, no pictures were found for your query, please try another one!
+        </p>
+      )}
     </>
   );
 };
