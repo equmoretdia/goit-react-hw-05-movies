@@ -1,7 +1,7 @@
 import Layout from './Layout';
 import Cast from './Cast';
 import Reviews from './Reviews';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { lazy } from 'react';
 
 const Home = lazy(() => import('../pages/Home'));
@@ -9,6 +9,7 @@ const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 
 export const App = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Routes>
@@ -21,7 +22,15 @@ export const App = () => {
           </Route>
         </Route>
         {/* Default route for non-existent URLs */}
-        <Route path="*" element={<Layout />} />
+        <Route
+          path="*"
+          element={<Layout />}
+          action={() => {
+            navigate('/', { replace: true });
+          }}
+        >
+          <Route index element={<Home />} />
+        </Route>
       </Routes>
     </>
   );
