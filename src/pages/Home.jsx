@@ -9,7 +9,7 @@ const Home = () => {
   const [films, setFilms] = useState([]);
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     async function fetchMovies() {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { Form, Input, FormButton } from './MoviesSearchStyles';
 
@@ -5,7 +6,7 @@ const MoviesSearch = ({ onSubmit }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query') ?? '';
-  console.log(query);
+  // console.log(query);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -35,3 +36,7 @@ const MoviesSearch = ({ onSubmit }) => {
 };
 
 export default MoviesSearch;
+
+MoviesSearch.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

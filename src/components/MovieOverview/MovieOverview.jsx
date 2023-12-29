@@ -1,5 +1,5 @@
 import Placeholder from 'img/placeholder.jpg';
-
+import PropTypes from 'prop-types';
 import {
   Wrapper,
   Poster,
@@ -44,3 +44,19 @@ const MovieOverview = ({ movie }) => {
 };
 
 export default MovieOverview;
+
+MovieOverview.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+};

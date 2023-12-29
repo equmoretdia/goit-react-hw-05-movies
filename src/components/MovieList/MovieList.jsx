@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { List, Item, LinkTo } from './MovieListStyles';
 
 const MovieList = ({ list, state }) => {
@@ -15,3 +16,13 @@ const MovieList = ({ list, state }) => {
 };
 
 export default MovieList;
+
+MovieList.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  state: PropTypes.object.isRequired,
+};
